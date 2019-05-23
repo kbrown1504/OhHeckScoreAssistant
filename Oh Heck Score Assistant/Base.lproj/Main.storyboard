@@ -549,19 +549,27 @@
                                     <action selector="onSubmitButtonPressed:" destination="fum-BS-AxY" eventType="touchUpInside" id="joN-u7-5IR"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="The Dealer is:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ntm-Vy-tca">
+                                <rect key="frame" x="0.0" y="239" width="414" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="7gb-Re-2Wr"/>
                     </view>
                     <connections>
                         <outlet property="bidTextField" destination="eih-2O-QcJ" id="fbV-ES-e1f"/>
+                        <outlet property="dealerLabel" destination="ntm-Vy-tca" id="Scn-rd-TdL"/>
                         <outlet property="playerNameLabel" destination="xE3-yc-miL" id="xO9-gn-nBM"/>
                         <segue destination="86q-zq-HRQ" kind="show" identifier="toTricksWonSegue" id="gsp-sC-DYd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iSM-NU-pl1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3196" y="118"/>
+            <point key="canvasLocation" x="3195.6521739130435" y="117.85714285714285"/>
         </scene>
         <!--Tricks Won View Controller-->
         <scene sceneID="GAB-bY-Oc1">

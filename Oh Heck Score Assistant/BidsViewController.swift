@@ -18,6 +18,7 @@ class BidsViewController: UIViewController {
     
     @IBOutlet weak var playerNameLabel: UILabel!
     @IBOutlet weak var bidTextField: UITextField!
+    @IBOutlet weak var dealerLabel: UILabel!
     
     
     override func viewDidLoad() {
@@ -25,7 +26,7 @@ class BidsViewController: UIViewController {
 
         playerCount = playerNamesArray.count
         playerNameLabel.text = playerNamesArray[(currentPlayer+mod)%playerCount]
-    
+        dealerLabel.text = "The dealer is \(playerNamesArray[((playerCount-1)+mod)%playerCount])."
     }
     
     
