@@ -46,8 +46,8 @@ class ScoreSheetViewController: UIViewController {
     @IBOutlet weak var playerSixTrickTextView: UITextView!
     @IBOutlet weak var playerSixScoreTextView: UITextView!
     
+    var mod = 0
     var playerNamesArray : [String] = []
-    
     var playerScoresArray : [Int] = [0,0,0,0,0,0]
     var playerBidsArray : [Int] = []
     var playerTricksWonArray : [Int] = []
@@ -56,27 +56,27 @@ class ScoreSheetViewController: UIViewController {
     var playerOneScore = 0
     var playerOneBidToAdd = 0
     var playerOneTricksWon = 0
-
+    
     var playerTwoScoreToAdd = 0
     var playerTwoScore = 0
     var playerTwoBidToAdd = 0
     var playerTwoTricksWon = 0
-
+    
     var playerThreeScoreToAdd = 0
     var playerThreeScore = 0
     var playerThreeBidToAdd = 0
     var playerThreeTricksWon = 0
-
+    
     var playerFourScoreToAdd = 0
     var playerFourScore = 0
     var playerFourBidToAdd = 0
     var playerFourTricksWon = 0
-
+    
     var playerFiveScoreToAdd = 0
     var playerFiveScore = 0
     var playerFiveBidToAdd = 0
     var playerFiveTricksWon = 0
-
+    
     var playerSixScoreToAdd = 0
     var playerSixScore = 0
     var playerSixBidToAdd = 0
@@ -84,6 +84,8 @@ class ScoreSheetViewController: UIViewController {
     
     var firstTime = true
     var currentPlayer = 0
+    
+    var playerCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,8 +97,8 @@ class ScoreSheetViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         //gets number of players using the array
-        let numberOfPlayers = playerNamesArray.count
-        print ("Number of players is : \(numberOfPlayers)")
+        playerCount = playerNamesArray.count
+        print ("Number of players is : \(playerCount)")
         
         if firstTime == true {
             
@@ -104,7 +106,7 @@ class ScoreSheetViewController: UIViewController {
             print ("It's the first run on Score Sheet!")
             
             //sets up the score board based on number of players
-            switch numberOfPlayers{
+            switch playerCount{
             case 2:
                 playerOneNameLabel.text = playerNamesArray[0]
                 playerTwoNameLabel.text = playerNamesArray[1]
@@ -156,7 +158,7 @@ class ScoreSheetViewController: UIViewController {
             
         } else {
             
-            switch numberOfPlayers{
+            switch playerCount{
             case 2:
                 addValues(playerBid: playerOneBidToAdd, playerTricks: playerOneTricksWon, playerScoreToAdd: playerOneScoreToAdd, playerScore: playerOneScore, playerIndex: 0, playerBidTextView: playerOneBidTextView, playerTrickTextView: playerOneTrickTextView, playerScoreTextView: playerOneScoreTextView)
                 print (playerBidsArray[1])
@@ -193,6 +195,8 @@ class ScoreSheetViewController: UIViewController {
                 break
             }
             
+            mod += 1
+            
         }
         
     }
@@ -200,12 +204,15 @@ class ScoreSheetViewController: UIViewController {
     func addValues (playerBid: Int, playerTricks: Int, playerScoreToAdd: Int, playerScore: Int, playerIndex: Int, playerBidTextView : UITextView, playerTrickTextView : UITextView, playerScoreTextView: UITextView){
         
         var playerScoreToAdd = 0
-        
+        var playerBid : Int!
+        var playerTricks : Int!
         print ("adding values")
-        //add score values
-        print ("player index is :\(playerIndex)")
-        let playerBid = playerBidsArray[playerIndex]
-        let playerTricks = playerTricksWonArray[playerIndex]
+        
+        
+        playerBid = playerBidsArray[(playerCount+(playerIndex - (mod%playerCount)))%playerCount]
+        playerTricks = playerTricksWonArray[(playerCount+(playerIndex - (mod%playerCount)))%playerCount]
+        
+        
         if playerBid == playerTricks{
             playerScoreToAdd = (3+playerBid)
         } else {
@@ -249,6 +256,7 @@ class ScoreSheetViewController: UIViewController {
         // Pass the selected object to the new view controller.
         let bidsVC = segue.destination as! BidsViewController
         bidsVC.playerNamesArray = playerNamesArray
+        bidsVC.mod = mod
         
     }
     

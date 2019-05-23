@@ -10,6 +10,7 @@ import UIKit
 
 class BidsViewController: UIViewController {
     
+    var mod = 0
     var playerNamesArray : [String] = []
     var bidsArray : [Int] = []
     var playerCount = 0
@@ -23,7 +24,7 @@ class BidsViewController: UIViewController {
         super.viewDidLoad()
 
         playerCount = playerNamesArray.count
-        playerNameLabel.text = playerNamesArray[currentPlayer]
+        playerNameLabel.text = playerNamesArray[(currentPlayer+mod)%playerCount]
     
     }
     
@@ -37,6 +38,7 @@ class BidsViewController: UIViewController {
         let tricksVC = segue.destination as! TricksWonViewController
         tricksVC.playerNamesArray = playerNamesArray
         tricksVC.bidsArray = bidsArray
+        tricksVC.mod = mod
         
      }
  
@@ -49,7 +51,7 @@ class BidsViewController: UIViewController {
             
             currentPlayer += 1
             
-            playerNameLabel.text = playerNamesArray[currentPlayer]
+            playerNameLabel.text = playerNamesArray[(currentPlayer+mod)%playerCount]
             bidsArray.append(Int(bidTextField.text!)!)
             bidTextField.text = ""
             

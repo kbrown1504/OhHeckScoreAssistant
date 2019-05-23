@@ -10,6 +10,7 @@ import UIKit
 
 class TricksWonViewController: UIViewController {
     
+    var mod = 0
     var playerNamesArray : [String] = []
     var bidsArray : [Int] = []
     var tricksArray : [Int] = []
@@ -24,7 +25,8 @@ class TricksWonViewController: UIViewController {
 
         playerCount = playerNamesArray.count
         
-        playerNameLabel.text = playerNamesArray[currentPlayer]
+        playerNameLabel.text = playerNamesArray[(currentPlayer+mod)%playerCount]
+        
         
     }
     
@@ -38,7 +40,7 @@ class TricksWonViewController: UIViewController {
             //for some reason this is unwrapping as nil and crashing the program.
             let toAdd = Int(tricksWonTextField.text!)!
             
-            playerNameLabel.text = playerNamesArray[currentPlayer]
+            playerNameLabel.text = playerNamesArray[(currentPlayer+mod)%playerCount]
             tricksArray.append(toAdd)
             tricksWonTextField.text = ""
             
@@ -59,6 +61,7 @@ class TricksWonViewController: UIViewController {
         let scoreSheetVC = segue.destination as! ScoreSheetViewController
         scoreSheetVC.playerBidsArray = bidsArray
         scoreSheetVC.playerTricksWonArray = tricksArray
+        scoreSheetVC.mod = mod
         
     }
     
